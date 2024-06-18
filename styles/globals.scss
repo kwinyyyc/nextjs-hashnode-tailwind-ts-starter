@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    line-height: 1.8;
+  }
+  h1 {
+    @apply text-6xl font-semibold;
+  }
+  h2 {
+    @apply text-4xl font-semibold;
+  }
+  h3 {
+    @apply text-3xl font-semibold;
+  }
+  h4 {
+    @apply text-base font-semibold;
+  }
+  h5 {
+    @apply text-sm font-semibold;
+  }
+  h6 {
+    @apply text-xs font-semibold;
+  }
+  article {
+    a {
+      @apply underline;
+    }
+  }
+  ol {
+    list-style: decimal;
+    list-style-position: outside;
+    margin-left: theme("spacing.6");
+    li {
+      padding-left: theme("spacing.4");
+    }
+  }
+
+  ul {
+    list-style-type: disc;
+    list-style-position: outside;
+    margin-left: theme("spacing.6");
+    li {
+      padding-bottom: theme("spacing.2");
+      padding-left: theme("spacing.2");
+    }
+  }
+
+  blockquote {
+    border-left: 4px solid theme("colors.neutral");
+    padding-left: theme("spacing.4");
+    padding-top: theme("spacing.4");
+    padding-bottom: theme("spacing.4");
+  }
+}
