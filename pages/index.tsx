@@ -31,11 +31,11 @@ const Home: React.FC<IHomeProps> = ({ posts, publication }) => {
       >
         <div className="mb-10">
           <Avatar
-            className="w-full justify-center md:w-auto"
+            className="flex justify-center pt-2 align-middle md:inline-flex md:w-auto md:pt-0"
             src={publication?.author?.profilePicture as string}
             alt={publication?.author?.name}
           />
-          <div className="ml-4 inline-block">
+          <div className="inline-flex flex-col justify-center align-middle md:ml-4">
             <h1 className="mb-2 mt-4 text-center font-extrabold">
               {publication?.title}
             </h1>

@@ -1,7 +1,7 @@
 import * as React from "react";
 
 export const ThemeContext = React.createContext<{
-  theme: string;
+  theme: string | null;
   toggleTheme: () => void;
   darkThemeName: string;
   lightThemeName: string;
@@ -26,7 +26,7 @@ export const useThemeContext = () => React.useContext(ThemeContext);
 export const useTheme = () => {
   const darkThemeName = "dark";
   const lightThemeName = "light";
-  const [theme, setTheme] = React.useState(lightThemeName);
+  const [theme, setTheme] = React.useState<string | null>(null);
   const toggleTheme = () => {
     setTheme(theme === darkThemeName ? lightThemeName : darkThemeName);
   };
@@ -38,6 +38,7 @@ export const useTheme = () => {
     );
   }, []);
   React.useEffect(() => {
+    if (theme === null) return;
     localStorage.setItem("currentTheme", JSON.stringify(theme));
     document.querySelector("html")?.setAttribute("data-theme", theme);
   }, [theme]);
@@ -58,7 +59,7 @@ export const useTheme = () => {
 export interface IThemeSwitcherProps {}
 
 export const ThemeSwitcher: React.FC<IThemeSwitcherProps> = () => {
-  const { toggleTheme } = React.useContext(ThemeContext);
+  const { toggleTheme, theme, darkThemeName } = React.useContext(ThemeContext);
 
   return (
     <>
@@ -77,7 +78,12 @@ export const ThemeSwitcher: React.FC<IThemeSwitcherProps> = () => {
           <circle cx="12" cy="12" r="5" />
           <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
         </svg>
-        <input type="checkbox" onClick={toggleTheme} className="toggle" />
+        <input
+          type="checkbox"
+          checked={theme === darkThemeName}
+          onClick={toggleTheme}
+          className="toggle"
+        />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="20"
