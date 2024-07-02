@@ -4,9 +4,37 @@ import {
   PostsByPublicationQuery,
   PostsByPublicationQueryVariables,
   Publication,
+  PublicationByHostQuery,
+  PublicationByHostQueryVariables,
   SinglePostByPublicationQuery,
   SinglePostByPublicationQueryVariables,
 } from "../generated/graphql";
+
+export const getPublication = async (): Promise<PublicationByHostQuery> => {
+  const query: RequestDocument = `
+  query Publication($host: String!) {
+    publication(host: $host) {
+      title
+      displayTitle
+      descriptionSEO
+      about {
+        text
+      }
+    }
+  }
+`;
+
+  const variables: PublicationByHostQueryVariables = {
+    host: process.env.NEXT_PUBLIC_HASHNODE_PUBLICATION_HOST,
+  };
+
+  const postData = await request<PublicationByHostQuery>(
+    process.env.NEXT_PUBLIC_HASHNODE_GQL_ENDPOINT,
+    query,
+    variables,
+  );
+  return postData;
+};
 
 export const getAllPosts = async ({
   query,

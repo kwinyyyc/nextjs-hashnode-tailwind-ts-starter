@@ -14,7 +14,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "code-snippet": "#999",
+        "code-snippet": "var(--code-snippet)",
       },
     },
   },
@@ -23,13 +23,13 @@ module.exports = {
       {
         light: {
           ...require("daisyui/src/theming/themes")["light"],
-          "--code-snippet": "#FBF1C7",
+          "--code-snippet": "rgb(247 248 255)",
         },
       },
       {
         dark: {
           ...require("daisyui/src/theming/themes")["sunset"],
-          "--code-snippet": "#282828",
+          "--code-snippet": "rgb(40 40 40)",
         },
       },
     ],

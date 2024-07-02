@@ -39,7 +39,7 @@ const Home: React.FC<IHomeProps> = ({ posts, publication }) => {
             <h1 className="mb-2 mt-4 text-center font-extrabold">
               {publication?.title}
             </h1>
-            <p>{publication?.descriptionSEO}</p>
+            <p className="text-center">{publication?.descriptionSEO}</p>
           </div>
         </div>
         {posts.length > 0 &&
